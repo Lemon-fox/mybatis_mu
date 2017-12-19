@@ -1,6 +1,7 @@
 package com.mybatis.test;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -88,6 +89,45 @@ public class UserDaoImplTest2 {
 	System.out.println(user);
 
 	}
+	
+	//v1.6
+	//TODO
+	@Test
+	public void testFindUserList2() throws Exception {
+
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	//创建UserMapper对象，mybatis自动生成mapper代理对象
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+	//创建包装对象，设置查询条件
+	UserQueryVo userQueryVo = new UserQueryVo();
+	User user = new User();
+	//由于这里使用动态sql，如果不设置某个值，条件不会拼接在sql中
+	user.setSex("男");
+	user.setUsername("ackles");
+
+	//传入多个id
+	List<Integer> ids = new ArrayList<Integer>();
+	ids.add(1);
+	ids.add(12);
+	ids.add(5);
+	userQueryVo.setIds(ids);
+
+	userQueryVo.setUser(user);
+	//调用userMapper的方法
+	List<User> list = userMapper.findUserList(userQueryVo);
+	System.out.println(list);
+
+	for(User ss:list) {
+        System.out.println(ss);
+        System.out.println(ss.getUsername());
+        System.out.println(ss.getBirthday());
+        System.out.println(ss.getAddress());
+        System.out.println(ss.getSex());
+    }
+	
+	}
+
 
 
 }

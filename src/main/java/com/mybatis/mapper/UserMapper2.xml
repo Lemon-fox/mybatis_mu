@@ -15,6 +15,21 @@
     <select id="findUserList" parameterType="com.mybatis.po.UserQueryVo" resultType="com.mybatis.po.User">
 		select * from user where user.sex = #{user.sex} and user.username like '%${user.username}%'
 	</select>
+	<select id="findUserList2" parameterType="com.mybatis.po.UserQueryVo" resultType="com.mybatis.po.User">
+		select * from user
+	<!-- where可以自动去掉条件中的第一个and -->
+	<where>
+		<if test="user!=null">
+		<if test="user.sex!=null and user.sex!=''">
+			and user.sex = #{user.sex}
+		</if>
+		<if test="user.username!=null and user.username!=''">
+			and user.username like '%${user.username}%'
+		</if>
+		</if>
+	</where>
+	</select>
+
 	<resultMap type="com.mybatis.po.User" id="userResultMap">
 		<id column="id_" property="id"/>
 		<result column="username_" property="username"/>
