@@ -11,6 +11,20 @@
     <select id="findUserByName" parameterType="java.lang.String" resultType="com.mybatis.po.User">
         select * from user where username like '%${value}%'
     </select>
+    
+    <select id="findUserList" parameterType="com.mybatis.po.UserQueryVo" resultType="com.mybatis.po.User">
+		select * from user where user.sex = #{user.sex} and user.username like '%${user.username}%'
+	</select>
+	<resultMap type="com.mybatis.po.User" id="userResultMap">
+		<id column="id_" property="id"/>
+		<result column="username_" property="username"/>
+	</resultMap>
+	<select id="findUserByIdResultMap" parameterType="int" resultMap="userResultMap">
+		SELECT id id_,username username_ from user where id = #{id}
+	</select>
+	
+	
+
 
 
 

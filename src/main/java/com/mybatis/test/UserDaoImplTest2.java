@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import com.mybatis.dao.UserMapper;
 import com.mybatis.po.User;
+import com.mybatis.po.UserQueryVo;
 
 public class UserDaoImplTest2 {
 
@@ -52,5 +53,41 @@ public class UserDaoImplTest2 {
         sqlSession.close();
         System.out.println(list);
     }
+	
+	//v1.5
+	@Test
+	public void testFindUserList() throws Exception {
+
+	    SqlSession sqlSession = sqlSessionFactory.openSession();
+	    //创建UserMapper对象，mybatis自动生成mapper代理对象
+	    UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+	    //创建包装对象，设置查询条件
+	    UserQueryVo userQueryVo = new UserQueryVo();
+	    User user = new User();
+	    user.setSex("男");
+	    user.setUsername("ackles");
+	    userQueryVo.setUser(user);
+
+	    //调用userMapper的方法
+	    List<User> list = userMapper.findUserList(userQueryVo);
+	    System.out.println(list);
+	}
+	@Test
+	public void testFindUserByIdResultMap() throws Exception {
+
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	//创建UserMapper对象，mybatis自动生成mapper代理对象
+	UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+
+	User user = userMapper.findUserByIdResultMap(2);
+	System.out.println(user.getUsername());
+//	System.out.println(user.getSex());
+	System.out.println(user.getSex());
+	System.out.println(user.getAddress());
+	System.out.println(user);
+
+	}
+
 
 }

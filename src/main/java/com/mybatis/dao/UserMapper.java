@@ -3,6 +3,7 @@ package com.mybatis.dao;
 import java.util.List;
 
 import com.mybatis.po.User;
+import com.mybatis.po.UserQueryVo;
 
 //mapper接口，相当于dao接口
 public interface UserMapper {
@@ -17,5 +18,11 @@ public interface UserMapper {
     public void deleteUser(int id) throws Exception;
     //更新用户信息
     public void updateUser(User user) throws Exception;
+  //用户信息综合查询
+    public List<User> findUserList(UserQueryVo userQueryVo) throws Exception;
+  //根据id查询用户信息，使用resultMap输出
+    public User findUserByIdResultMap(int id) throws Exception;
+
+
 
 }
