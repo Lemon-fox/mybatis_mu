@@ -14,6 +14,8 @@ public interface UserMapperOrders {
 	
 	//查询订单（关联用户）及订单明细
 	public List<Orders> findOrdersAndOrderDetailResultMap() throws Exception;
+	//查询订单，关联用户查询，用户查询用的是延迟加载
+	public List<Orders> findOrdersUserLazyLoading() throws Exception;
 
 
 

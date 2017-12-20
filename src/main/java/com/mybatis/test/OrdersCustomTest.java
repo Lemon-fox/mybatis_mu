@@ -13,6 +13,7 @@ import org.junit.Test;
 import com.mybatis.dao.UserMapperOrders;
 import com.mybatis.po.Orders;
 import com.mybatis.po.OrdersCustom;
+import com.mybatis.po.User;
 
 public class OrdersCustomTest {
 	
@@ -53,6 +54,21 @@ public class OrdersCustomTest {
 	List<Orders> list = userMapperOrders.findOrdersAndOrderDetailResultMap();
 	System.out.println(list);
 	}
+	@Test
+	public void testFindOrdersUserLazyLoading() throws Exception {
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	UserMapperOrders userMapperOrders = sqlSession.getMapper(UserMapperOrders.class);
+	//查询订单表（单表）
+	List<Orders> list = userMapperOrders.findOrdersUserLazyLoading();
+
+	//遍历上边的订单列表
+	for(Orders orders : list) {
+	//执行getUser()去查询用户信息，这里实现按需加载
+	User user = orders.getUser();
+	System.out.println(user);
+	}
+	}
+
 
 
 
