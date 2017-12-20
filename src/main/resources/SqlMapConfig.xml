@@ -3,6 +3,14 @@
 <configuration>
 	<properties resource="db.properties"></properties>
 	
+	
+<!--     <settings>  
+       <setting name="lazyLoadingEnabled" value="true"/>延迟加载/懒加载  
+       <setting name="aggressiveLazyLoading" value="false"/>积极加载/预加载  
+       <setting name="cacheEnabled" value="true" />
+    </settings>   -->
+	
+	
 	<!-- 别名的定义 -->
 		<typeAliases>
 		<!-- 针对单个别名的定义。type：类型的路径； alias：别名 -->

@@ -1,8 +1,12 @@
 package com.mybatis.po;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-public class User {
+public class User implements Serializable{
+	
+	private static final long serialVersionUID=1L;
 	
 	private Integer id;
 	private String username;
@@ -10,9 +14,18 @@ public class User {
 	private String sex;
 	private String address;
 	
+	private List<Orders> ordersList;
+	
+	
 	
 	
 
+	public List<Orders> getOrdersList() {
+		return ordersList;
+	}
+	public void setOrdersList(List<Orders> ordersList) {
+		this.ordersList = ordersList;
+	}
 	public Integer getId() {
 		return id;
 	}
