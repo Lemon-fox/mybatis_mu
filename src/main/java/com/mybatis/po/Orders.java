@@ -1,6 +1,7 @@
 package com.mybatis.po;
 
 import java.util.Date;
+import java.util.List;
 
 public class Orders {
 	
@@ -12,7 +13,20 @@ public class Orders {
 	
 	private User user;
 	
+	private List<Orderdetail> orderdetails;
 	
+
+	@Override
+	public String toString() {
+		return "Orders [id=" + id + ", user_id=" + user_id + ", number=" + number + ", createtime=" + createtime
+				+ ", note=" + note + ", user=" + user + ", orderdetails=" + orderdetails + "]";
+	}
+	public List<Orderdetail> getOrderdetails() {
+		return orderdetails;
+	}
+	public void setOrderdetails(List<Orderdetail> orderdetails) {
+		this.orderdetails = orderdetails;
+	}
 	public User getUser() {
 		return user;
 	}

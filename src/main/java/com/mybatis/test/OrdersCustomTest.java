@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.mybatis.dao.UserMapperOrders;
+import com.mybatis.po.Orders;
 import com.mybatis.po.OrdersCustom;
 
 public class OrdersCustomTest {
@@ -44,6 +45,15 @@ public class OrdersCustomTest {
 	List<OrdersCustom> list = userMapperOrders.findOrdersUserResultMap();
 	System.out.println(list);
 	}
+	
+	@Test
+	public void testFindOrdersAndOrderDetailResultMap() throws Exception {
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	UserMapperOrders userMapperOrders = sqlSession.getMapper(UserMapperOrders.class);
+	List<Orders> list = userMapperOrders.findOrdersAndOrderDetailResultMap();
+	System.out.println(list);
+	}
+
 
 
 
