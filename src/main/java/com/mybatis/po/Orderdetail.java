@@ -7,7 +7,17 @@ public class Orderdetail {
 	private String itemsNum;
 	private String ordersId;
 	
+	private Items items;
 	
+	
+	
+	
+	public Items getItems() {
+		return items;
+	}
+	public void setItems(Items items) {
+		this.items = items;
+	}
 	public int getId() {
 		return id;
 	}

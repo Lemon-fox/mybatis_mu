@@ -55,6 +55,14 @@ public class OrdersCustomTest {
 	System.out.println(list);
 	}
 	@Test
+	public void findUserAndItemsResultMap() throws Exception {
+	SqlSession sqlSession = sqlSessionFactory.openSession();
+	UserMapperOrders userMapperOrders = sqlSession.getMapper(UserMapperOrders.class);
+	List<User> list = userMapperOrders.findUserAndItemsResultMap();
+	System.out.println(list);
+	}
+
+	@Test
 	public void testFindOrdersUserLazyLoading() throws Exception {
 	SqlSession sqlSession = sqlSessionFactory.openSession();
 	UserMapperOrders userMapperOrders = sqlSession.getMapper(UserMapperOrders.class);
